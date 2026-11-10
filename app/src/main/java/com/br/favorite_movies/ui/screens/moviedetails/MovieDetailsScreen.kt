@@ -89,16 +89,14 @@ fun MovieDetailsScreen(
             }
 
             Spacer(modifier = Modifier.height(24.dp))
-
             if (isFavorite) {
-                OutlinedButton(onClick = { viewModel.toggleFavorite(movie) },
+                OutlinedButton(onClick = { viewModel.toggleFavorite(movie!!) },
                     modifier = Modifier.fillMaxWidth().height(50.dp),
                 ) {
                     Text("❤\uFE0F  Remover dos Favoritos", fontSize = 16.sp)
                 }
             } else {
-                Button(
-                    onClick = { viewModel.toggleFavorite(movie) },
+                Button(onClick = { viewModel.toggleFavorite(movie!!) },
                     modifier = Modifier.fillMaxWidth().height(50.dp)
                 ) {
                     Text("\uD83E\uDD0D  Adicionar aos Favoritos", fontSize = 16.sp)

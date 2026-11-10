@@ -34,7 +34,7 @@ class MovieDetailsViewModel(
         }
     }
 
-    fun toggleFavorite(movieDetail: MovieEntity?){
+    fun toggleFavorite(movieDetail: MovieEntity){
         viewModelScope.launch(Dispatchers.IO) {
             if (isFavorite.value){
                 repository.removeFavorite(id)
