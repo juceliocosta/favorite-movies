@@ -4,6 +4,7 @@ import com.br.favorite_movies.data.local.MovieDao
 import com.br.favorite_movies.data.local.MovieEntity
 import com.br.favorite_movies.data.remote.ApiService
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.firstOrNull
 
 interface MovieRepository {
     suspend fun searchMovies(query: String): List<MovieEntity>
@@ -41,6 +42,11 @@ class MovieRepositoryImpl(
 
     override suspend fun getMovieDetails(id: String): MovieEntity {
         return try {
+            val favoriteMovie = favoriteMovieDao.getFavoriteById(id).firstOrNull()
+
+            if (favoriteMovie != null) {
+                return favoriteMovie
+            }
             val dto = apiService.getMovieDetails(id)
             MovieEntity(
                 id = dto.id,
