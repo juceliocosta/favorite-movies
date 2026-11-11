@@ -1,4 +1,4 @@
-package com.br.favorite_movies.ui.screens.movielist
+package com.br.favorite_movies.ui.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

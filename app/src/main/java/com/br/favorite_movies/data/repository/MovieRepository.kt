@@ -21,15 +21,48 @@ class MovieRepositoryImpl(
 
     override suspend fun searchMovies(query: String): List<MovieEntity> {
         try {
-            val movies = apiService.searchMovies(query)
-            return movies
+            val response = apiService.searchMovies(query)
+            return response.search?.map { dto ->
+                MovieEntity(
+                    id = dto.id,
+                    title = dto.title,
+                    year = dto.year,
+                    genre = "",
+                    plot = "",
+                    rating = "",
+                    poster = dto.poster ?: ""
+                )
+            } ?: emptyList()
         } catch (e: Exception) {
+            e.printStackTrace()
             return emptyList()
         }
     }
 
     override suspend fun getMovieDetails(id: String): MovieEntity {
-        return apiService.getMovieDetails(id)
+        return try {
+            val dto = apiService.getMovieDetails(id)
+            MovieEntity(
+                id = dto.id,
+                title = dto.title,
+                year = dto.year,
+                genre = dto.genre ?: "N/A",
+                plot = dto.plot ?: "Sem sinopse disponível.",
+                rating = dto.rating ?: "N/A",
+                poster = dto.poster ?: ""
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+            MovieEntity(
+                id = id,
+                title = "Erro ao carregar",
+                year = "",
+                genre = "",
+                plot = "",
+                rating = "",
+                poster = ""
+            )
+        }
     }
 
     override fun getFavoriteMovies(): Flow<List<MovieEntity>> {

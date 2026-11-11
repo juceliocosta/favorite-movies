@@ -1,4 +1,4 @@
-package com.br.favorite_movies.ui.screens.moviedetails
+package com.br.favorite_movies.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.br.favorite_movies.ui.viewModels.MovieDetailsViewModel
 import com.br.favorite_movies.ui.theme.FavoritemoviesTheme
 
 @Composable

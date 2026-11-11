@@ -3,9 +3,9 @@ package com.br.favorite_movies.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.br.favorite_movies.data.repository.MovieRepository
-import com.br.favorite_movies.ui.screens.favorites.FavoritesViewModel
-import com.br.favorite_movies.ui.screens.moviedetails.MovieDetailsViewModel
-import com.br.favorite_movies.ui.screens.movielist.MovieListViewModel
+import com.br.favorite_movies.ui.viewModels.FavoritesViewModel
+import com.br.favorite_movies.ui.viewModels.MovieDetailsViewModel
+import com.br.favorite_movies.ui.viewModels.MovieListViewModel
 
 class AppViewModelFactory(
     private val repository: MovieRepository,

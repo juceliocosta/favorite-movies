@@ -1,4 +1,4 @@
-package com.br.favorite_movies.ui.screens.home
+package com.br.favorite_movies.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,10 +14,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.br.favorite_movies.ui.theme.FavoritemoviesTheme
 
 @Composable
 fun HomeScreen(
@@ -45,13 +43,5 @@ fun HomeScreen(
                 modifier = Modifier.fillMaxWidth().height(50.dp)
             ) { Text("Filmes Favoritos", fontSize = 16.sp) }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HomeScreenPreview() {
-    FavoritemoviesTheme {
-        HomeScreen(onNavigateToMovieList = {} , onNavigateToFavorites = {} )
     }
 }

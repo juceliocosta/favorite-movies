@@ -11,13 +11,13 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.br.favorite_movies.FavoriteMoviesApplication
 import com.br.favorite_movies.ui.AppViewModelFactory
-import com.br.favorite_movies.ui.screens.favorites.FavoritesScreen
-import com.br.favorite_movies.ui.screens.favorites.FavoritesViewModel
-import com.br.favorite_movies.ui.screens.home.HomeScreen
-import com.br.favorite_movies.ui.screens.moviedetails.MovieDetailsScreen
-import com.br.favorite_movies.ui.screens.moviedetails.MovieDetailsViewModel
-import com.br.favorite_movies.ui.screens.movielist.MovieListScreen
-import com.br.favorite_movies.ui.screens.movielist.MovieListViewModel
+import com.br.favorite_movies.ui.screens.FavoritesScreen
+import com.br.favorite_movies.ui.viewModels.FavoritesViewModel
+import com.br.favorite_movies.ui.screens.HomeScreen
+import com.br.favorite_movies.ui.screens.MovieDetailsScreen
+import com.br.favorite_movies.ui.viewModels.MovieDetailsViewModel
+import com.br.favorite_movies.ui.screens.MovieListScreen
+import com.br.favorite_movies.ui.viewModels.MovieListViewModel
 
 object NavRoutes {
     const val HOME = "home"

@@ -1,4 +1,4 @@
-package com.br.favorite_movies.ui.screens.movielist
+package com.br.favorite_movies.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Card
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -27,11 +29,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.br.favorite_movies.data.local.MovieEntity
+import com.br.favorite_movies.ui.viewModels.MovieListViewModel
 import com.br.favorite_movies.ui.theme.FavoritemoviesTheme
 
 @Composable
@@ -44,20 +48,30 @@ fun MovieListScreen(
     val movies by viewModel.movies.collectAsState()
 
     Column() {
-        Text("Lista de Filmes", fontSize = 24.sp,
+        Row(horizontalArrangement = Arrangement.spacedBy(4.dp),
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.background(color = Color.LightGray)
                 .fillMaxWidth().padding(16.dp)
-        )
+        ){
+            IconButton(onClick = onNavigateBack) { Text("⬅\uFE0F") }
+            Text("Lista de Filmes", fontSize = 24.sp,
+                modifier = Modifier.background(color = Color.LightGray)
+                    .fillMaxWidth().padding(16.dp)
+            )
+        }
         Column(modifier = Modifier.fillMaxSize().padding(all = 28.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             OutlinedTextField(
                 value = search,
-                onValueChange = { viewModel.onSearchChanged(it)},
+                onValueChange = { viewModel.onSearchChanged(it) },
                 modifier = Modifier.fillMaxWidth(),
                 label = { Text("Buscar filme...") },
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+                keyboardActions = KeyboardActions(onSearch = { viewModel.executeSearch() }),
                 trailingIcon = {
-                    IconButton(onClick = {}) { Text("\uD83D\uDD0D") } //"🔍"
+                    IconButton(onClick = { viewModel.executeSearch() }) { Text("\uD83D\uDD0D") } //"🔍"
                 }
             )
 
