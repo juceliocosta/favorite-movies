@@ -1,5 +1,6 @@
 package com.br.favorite_movies.data.remote
 
+import com.br.favorite_movies.data.local.MovieEntity
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -8,13 +9,13 @@ interface ApiService {
     suspend fun searchMovies(
         @Query("s") query: String,
         @Query("apikey") apiKey: String = API_KEY
-    ): SearchResponse
+    ): List<MovieEntity>
 
     @GET("/")
     suspend fun getMovieDetails(
         @Query("i") id: String,
         @Query("apikey") apiKey: String = API_KEY
-    ): MovieDetailDto
+    ): MovieEntity
 
     companion object {
         const val API_KEY = "ff6cb10f"

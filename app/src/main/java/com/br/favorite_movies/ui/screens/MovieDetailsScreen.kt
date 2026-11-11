@@ -56,21 +56,21 @@ fun MovieDetailsScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             AsyncImage(
-                model = movie?.poster,
-                contentDescription = movie?.title,
+                model = movie?.Poster,
+                contentDescription = movie?.Title,
                 modifier = Modifier.height(280.dp).fillMaxWidth()
                     .clip(RoundedCornerShape(12.dp)),
                 contentScale = ContentScale.Fit
             )
 
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = "${movie?.title}")
+            Text(text = "${movie?.Title}")
 
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = "Ano: ${movie?.year}  ⭐ ${movie?.rating ?: "N/A"}")
+            Text(text = "Ano: ${movie?.Year}  ⭐ ${movie?.imdbRating ?: "N/A"}")
 
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = "Gênero: ${movie?.genre ?: "N/A"}")
+            Text(text = "Gênero: ${movie?.Genre ?: "N/A"}")
 
             Spacer(modifier = Modifier.height(16.dp))
             Card(modifier = Modifier.fillMaxWidth()) {
@@ -78,7 +78,7 @@ fun MovieDetailsScreen(
                     Text(text = "Sinopse")
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    Text(text = movie?.plot ?: "Sem sinopse disponível.")
+                    Text(text = movie?.Plot ?: "Sem sinopse disponível.")
                 }
             }
 

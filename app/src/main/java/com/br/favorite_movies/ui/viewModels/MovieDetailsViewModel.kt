@@ -40,13 +40,13 @@ class MovieDetailsViewModel(
                 repository.removeFavorite(id)
             } else {
                 val favoriteEntity = MovieEntity(
-                    id = movieDetail.id,
-                    title = movieDetail.title,
-                    year = movieDetail.year,
-                    genre = movieDetail.genre ?: "N/A",
-                    plot = movieDetail.plot ?: "Sem sinopse disponível.",
-                    rating = movieDetail.rating ?: "N/A",
-                    poster = movieDetail.poster ?: ""
+                    imdbID = movieDetail.imdbID,
+                    Title = movieDetail.Title,
+                    Year = movieDetail.Year,
+                    Genre = movieDetail.Genre ?: "N/A",
+                    Plot = movieDetail.Plot ?: "Sem sinopse disponível.",
+                    imdbRating = movieDetail.imdbRating ?: "N/A",
+                    Poster = movieDetail.Poster ?: ""
                 )
                 repository.addFavorite(favoriteEntity)
             }

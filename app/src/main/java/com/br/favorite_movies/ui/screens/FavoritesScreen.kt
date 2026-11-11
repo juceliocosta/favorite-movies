@@ -61,12 +61,12 @@ fun FavoritesScreen(
             ) {
                 items(
                     items = favorites,
-                    key = { it.id }
+                    key = { it.imdbID }
                 ) { movie ->
                     FavoriteMovieItemCard(
                         movie = movie,
-                        onClick = { onMovieClick(movie.id) },
-                        onDeleteClick = { viewModel.removeFavorite(movie.id) }
+                        onClick = { onMovieClick(movie.imdbID) },
+                        onDeleteClick = { viewModel.removeFavorite(movie.imdbID) }
                     )
                 }
             }
@@ -85,8 +85,8 @@ fun FavoriteMovieItemCard(
             verticalAlignment = Alignment.CenterVertically
         ){
             AsyncImage(
-                model = movie.poster,
-                contentDescription = movie.title,
+                model = movie.Poster,
+                contentDescription = movie.Title,
                 modifier = Modifier.size(width = 60.dp, height = 90.dp)
                     .clip(RoundedCornerShape(6.dp)),
                 contentScale = ContentScale.Crop
@@ -95,13 +95,13 @@ fun FavoriteMovieItemCard(
             Spacer(modifier = Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)
             ) {
-                Text(text = movie.title)
+                Text(text = movie.Title)
 
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(text = "Ano: ${movie.year}")
+                Text(text = "Ano: ${movie.Year}")
 
                 Spacer(modifier = Modifier.height(2.dp))
-                Text(text = "Gênero: ${movie.genre}")
+                Text(text = "Gênero: ${movie.Genre}")
             }
 
             IconButton(onClick = onDeleteClick) {

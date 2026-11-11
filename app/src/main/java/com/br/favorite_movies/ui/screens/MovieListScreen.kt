@@ -85,7 +85,7 @@ fun MovieListScreen(
                     items(movies) { movie ->
                         MovieItemCard(
                             movie = movie,
-                            onClick = { onMovieClick(movie.id) }
+                            onClick = { onMovieClick(movie.imdbID) }
                         )
                     }
                 }
@@ -104,8 +104,8 @@ fun MovieItemCard(
             verticalAlignment = Alignment.CenterVertically
         ){
             AsyncImage(
-                model = movie.poster,
-                contentDescription = movie.title,
+                model = movie.Poster,
+                contentDescription = movie.Title,
                 modifier = Modifier
                     .size(width = 60.dp, height = 90.dp)
                     .clip(RoundedCornerShape(6.dp)),
@@ -115,9 +115,9 @@ fun MovieItemCard(
             Spacer(modifier = Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)
             ) {
-                Text(text = movie.title)
+                Text(text = movie.Title)
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(text = "Ano: ${movie.year}")
+                Text(text = "Ano: ${movie.Year}")
             }
         }
     }

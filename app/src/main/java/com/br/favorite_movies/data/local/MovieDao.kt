@@ -10,13 +10,13 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface MovieDao {
 
-    @Query("SELECT * FROM favorite_movies ORDER BY title ASC")
+    @Query("SELECT * FROM favorite_movies ORDER BY Title ASC")
     fun getAllFavorites(): Flow<List<MovieEntity>>
 
-    @Query("SELECT * FROM favorite_movies WHERE id = :id")
+    @Query("SELECT * FROM favorite_movies WHERE imdbID = :id")
     fun getFavoriteById(id: String): Flow<MovieEntity?>
 
-    @Query("SELECT EXISTS(SELECT 1 FROM favorite_movies WHERE id = :id)")
+    @Query("SELECT EXISTS(SELECT 1 FROM favorite_movies WHERE imdbID = :id)")
     fun isFavorite(id: String): Flow<Boolean>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -25,6 +25,6 @@ interface MovieDao {
     @Delete
     suspend fun deleteFavorite(movie: MovieEntity)
 
-    @Query("DELETE FROM favorite_movies WHERE id = :id")
-    suspend fun deleteFavoriteById(id: String)
+    @Query("DELETE FROM favorite_movies WHERE imdbID = :imdbID")
+    suspend fun deleteFavoriteById(imdbID: String)
 }
