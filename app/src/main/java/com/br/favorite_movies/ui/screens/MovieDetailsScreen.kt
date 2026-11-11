@@ -52,7 +52,8 @@ fun MovieDetailsScreen(
         Spacer(modifier = Modifier.padding(16.dp))
         Column(
             modifier = Modifier.fillMaxSize().padding(all = 28.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             AsyncImage(
                 model = movie?.poster,
@@ -62,21 +63,13 @@ fun MovieDetailsScreen(
                 contentScale = ContentScale.Fit
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(4.dp))
             Text(text = "${movie?.title}")
 
-            Spacer(modifier = Modifier.height(8.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(text = "Ano: ${movie?.year}")
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(text = "Ano: ${movie?.year}  ⭐ ${movie?.rating ?: "N/A"}")
 
-                Spacer(modifier = Modifier.width(16.dp))
-                Text("⭐")
-
-                Spacer(modifier = Modifier.width(4.dp))
-                Text(text = movie?.rating ?: "N/A")
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
             Text(text = "Gênero: ${movie?.genre ?: "N/A"}")
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -89,7 +82,7 @@ fun MovieDetailsScreen(
                 }
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             if (isFavorite) {
                 OutlinedButton(onClick = { viewModel.toggleFavorite(movie!!) },
                     modifier = Modifier.fillMaxWidth().height(50.dp),
@@ -104,13 +97,5 @@ fun MovieDetailsScreen(
                 }
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HomeScreenPreview() {
-    FavoritemoviesTheme {
-//        MovieDetailsScreen(onNavigateBack = {}, viewModel = )
     }
 }
