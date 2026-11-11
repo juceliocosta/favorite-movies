@@ -24,45 +24,25 @@ class MovieRepositoryImpl(
 
     override suspend fun searchMovies(query: String): List<MovieEntity> {
         return try {
-            apiService.searchMovies(query)
+            val response = apiService.searchMovies(query)
+            response.search ?: emptyList()
         } catch (e: Exception) {
             Log.e(TAG, "Erro na rede ao buscar os filmes", e)
-            return emptyList()
+            emptyList()
         }
     }
 
     override suspend fun getMovieDetails(id: String): MovieEntity? {
-        return favoriteMovieDao.getFavoriteById(id).firstOrNull()
-            ?: apiService.getMovieDetails(id)
-//        return try {
-//            val favoriteMovie = favoriteMovieDao.getFavoriteById(id).firstOrNull()
-
-//            if (favoriteMovie != null) {
-//                return favoriteMovie
-//            }
-//            val dto = apiService.getMovieDetails(id)
-
-//            MovieEntity(
-//                id = dto.id,
-//                title = dto.title,
-//                year = dto.year,
-//                genre = dto.genre ?: "N/A",
-//                plot = dto.plot ?: "Sem sinopse disponível.",
-//                rating = dto.rating ?: "N/A",
-//                poster = dto.poster ?: ""
-//            )
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//            MovieEntity(
-//                id = id,
-//                title = "Erro ao carregar",
-//                year = "",
-//                genre = "",
-//                plot = "",
-//                rating = "",
-//                poster = ""
-//            )
-//        }
+        return try {
+            val favoriteMovie = favoriteMovieDao.getFavoriteById(id).firstOrNull()
+            if (favoriteMovie != null) {
+                return favoriteMovie
+            }
+            apiService.getMovieDetails(id)
+        } catch (e: Exception) {
+            Log.e(TAG, "Erro ao buscar detalhes do filme", e)
+            null
+        }
     }
 
     override fun getFavoriteMovies(): Flow<List<MovieEntity>> {

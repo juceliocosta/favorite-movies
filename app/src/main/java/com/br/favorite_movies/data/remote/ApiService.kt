@@ -9,7 +9,7 @@ interface ApiService {
     suspend fun searchMovies(
         @Query("s") query: String,
         @Query("apikey") apiKey: String = API_KEY
-    ): List<MovieEntity>
+    ): SearchResponse
 
     @GET("/")
     suspend fun getMovieDetails(

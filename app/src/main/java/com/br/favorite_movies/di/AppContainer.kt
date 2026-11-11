@@ -30,7 +30,9 @@ class DefaultAppContainer(private val context: Context): AppContainer {
             context.applicationContext,
             AppDatabase::class.java,
             "favorite_movies_db"
-        ).build()
+        )
+            .fallbackToDestructiveMigration(dropAllTables = true)
+            .build()
     }
 
     override val movieDao: MovieDao by lazy {

@@ -101,7 +101,7 @@ fun FavoriteMovieItemCard(
                 Text(text = "Ano: ${movie.Year}")
 
                 Spacer(modifier = Modifier.height(2.dp))
-                Text(text = "Gênero: ${movie.Genre}")
+                Text(text = "Gênero: ${movie.Genre ?: "N/A"}")
             }
 
             IconButton(onClick = onDeleteClick) {
